@@ -20,12 +20,12 @@ type Error struct {
 	Err error
 }
 
-// Error implement standard xerror.Wrapper interface
+// SdkError implement standard xerror.Wrapper interface
 func (e *Error) Unwrap() error {
 	return e.Err
 }
 
-// Error implement standard error interface
+// SdkError implement standard error interface
 func (e *Error) Error() string {
 	str := "scaleway-sdk-go: " + e.Str
 	if e.Err != nil {
@@ -73,6 +73,11 @@ type ResponseError struct {
 	Status string `json:"-"`
 
 	RawBody json.RawMessage `json:"-"`
+}
+
+func (e *ResponseError) As(target interface{}) bool {
+	_, ok := target.(**SdkError)
+	return ok
 }
 
 // IsScwSdkError implement SdkError interface

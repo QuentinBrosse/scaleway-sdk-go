@@ -6,59 +6,59 @@ import (
 	"github.com/scaleway/scaleway-sdk-go/internal/errors"
 )
 
-// IsScwError returns true if the given error is a Scaleway SDK error.
-func IsScwError(err error) bool {
+// AsScwError returns true if the given error is a Scaleway SDK error.
+func AsScwError(err error) (bool, error) {
 	var e *errors.Error
-	return As(err, &e)
+	return As(err, &e), e
 }
 
 //
 // Scaleway API errors.
 //
 
-// ResponseError returns true if the given error is a response error.
-func IsResponseError(err error) bool {
+// AsResponseError returns true if the given error is a response error.
+func AsResponseError(err error) (bool, error) {
 	var e *errors.ResponseError
-	return As(err, &e)
+	return As(err, &e), e
 }
 
-// IsInvalidArgumentsError returns true if the given error reports that a request contains an invalid argument.
-func IsInvalidArgumentsError(err error) bool {
+// AsInvalidArgumentsError returns true if the given error reports that a request contains an invalid argument.
+func AsInvalidArgumentsError(err error) (bool, error) {
 	var e *errors.InvalidArgumentsError
-	return As(err, &e)
+	return As(err, &e), e
 }
 
-// IsQuotasExceededError returns true if the given error reports that you exceeded a resource quotas.
-func IsQuotasExceededError(err error) bool {
+// AsQuotasExceededError returns true if the given error reports that you exceeded a resource quotas.
+func AsQuotasExceededError(err error) (bool, error) {
 	var e *errors.QuotasExceededError
-	return As(err, &e)
+	return As(err, &e), e
 }
 
-// IsPermissionsDeniedError returns true if the given error reports that you try to make a forbidden action.
-func IsPermissionsDeniedError(err error) bool {
+// AsPermissionsDeniedError returns true if the given error reports that you try to make a forbidden action.
+func AsPermissionsDeniedError(err error) (bool, error) {
 	var e *errors.PermissionsDeniedError
-	return As(err, &e)
+	return As(err, &e), e
 }
 
-// IsResourceNotFoundError returns true if the given error is reports that the targeted resource is not found.
-func IsResourceNotFoundError(err error) bool {
+// AsResourceNotFoundError returns true if the given error is reports that the targeted resource is not found.
+func AsResourceNotFoundError(err error) (bool, error) {
 	var e *errors.ResourceNotFoundError
-	return As(err, &e)
+	return As(err, &e), e
 }
 
-// IsOutOfStockError returns true if the given error reports that the target product is out of stock.
-func IsOutOfStockError(err error) bool {
+// AsOutOfStockError returns true if the given error reports that the target product is out of stock.
+func AsOutOfStockError(err error) (bool, error) {
 	var e *errors.OutOfStockError
-	return As(err, &e)
+	return As(err, &e), e
 }
 
 //
 // Client Validation errors.
 //
 
-// IsNoClientCredentialProvidedError returns true if the given error reports that no credential has been provided
+// AsNoClientCredentialProvidedError returns true if the given error reports that no credential has been provided
 // for a client creation.
-func IsNoClientCredentialProvidedError(err error) bool {
+func AsNoClientCredentialProvidedError(err error) (bool, error) {
 	var e *errors.NoClientCredentialProvidedError
-	return As(err, &e)
+	return As(err, &e), e
 }

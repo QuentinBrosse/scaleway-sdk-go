@@ -195,27 +195,19 @@ func Example_createLoadBalancer() {
 
 func ExampleErrors() {
 	scwError := errors.New("scwError")
+	fmt.Println(scw.AsScwError(scwError))
 
-	fmt.Println(scw.IsScwError(scwError))
-
-	resErr := &errors.ResponseError{
-		Message:    "",
-		Type:       "",
-		Resource:   "",
-		Fields:     nil,
-		StatusCode: 0,
-		Status:     "",
-		RawBody:    nil,
-	}
-
-	fmt.Println(scw.IsResponseError(resErr))
+	resErr := &errors.ResponseError{}
+	fmt.Println(scw.AsResponseError(resErr))
+	fmt.Println(scw.AsScwError(resErr))
 
 	_, openErr := os.Open("")
 	wOpenErr := errors.Wrap(openErr, "cannot open the file")
 
-	fmt.Println(scw.IsScwError(wOpenErr))
+	fmt.Println(scw.AsScwError(wOpenErr))
 
-	// Output: true
-	// true
-	// true
+	// Output: true scaleway-sdk-go: scwError
+	// true scaleway-sdk-go: http error
+	// true scaleway-sdk-go: http error
+	// true scaleway-sdk-go: cannot open the file: open : no such file or directory
 }
