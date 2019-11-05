@@ -3,9 +3,10 @@ package e2e
 import (
 	"testing"
 
+	"github.com/scaleway/scaleway-sdk-go/internal/errors"
+
 	"github.com/scaleway/scaleway-sdk-go/api/test/v1"
 	"github.com/scaleway/scaleway-sdk-go/internal/testhelpers"
-	"github.com/scaleway/scaleway-sdk-go/scw"
 )
 
 func TestStandardErrors(t *testing.T) {
@@ -16,7 +17,7 @@ func TestStandardErrors(t *testing.T) {
 		_, err = client.GetHuman(&test.GetHumanRequest{
 			HumanID: "b3ba839a-dcf2-4b0a-ac81-fc32370052a0",
 		})
-		testhelpers.Equals(t, &scw.ResourceNotFoundError{
+		testhelpers.Equals(t, &errors.ResourceNotFoundError{
 			Resource:   "human",
 			ResourceID: "b3ba839a-dcf2-4b0a-ac81-fc32370052a0",
 			RawBody:    []byte(`{"message":"resource is not found","resource":"human","resource_id":"b3ba839a-dcf2-4b0a-ac81-fc32370052a0","type":"not_found"}`),
@@ -27,7 +28,7 @@ func TestStandardErrors(t *testing.T) {
 		_, err = client.CreateHuman(&test.CreateHumanRequest{
 			AltitudeInMeter: -7000000,
 		})
-		testhelpers.Equals(t, &scw.InvalidArgumentsError{
+		testhelpers.Equals(t, &errors.InvalidArgumentsError{
 			Details: []struct {
 				ArgumentName string `json:"argument_name"`
 				Reason       string `json:"reason"`
@@ -53,7 +54,7 @@ func TestStandardErrors(t *testing.T) {
 		}
 
 		_, err = client.CreateHuman(&test.CreateHumanRequest{})
-		testhelpers.Equals(t, &scw.QuotasExceededError{
+		testhelpers.Equals(t, &errors.QuotasExceededError{
 			Details: []struct {
 				Resource string `json:"resource"`
 				Quota    uint32 `json:"quota"`
@@ -85,7 +86,7 @@ func TestStandardErrors(t *testing.T) {
 		testhelpers.AssertNoError(t, err)
 
 		_, err = client.UpdateHuman(&test.UpdateHumanRequest{HumanID: human.ID})
-		testhelpers.Equals(t, &scw.TransientStateError{
+		testhelpers.Equals(t, &errors.TransientStateError{
 			Resource:     "human",
 			ResourceID:   human.ID,
 			CurrentState: "running",
@@ -98,7 +99,7 @@ func TestStandardErrors(t *testing.T) {
 		_, err = client.CreateHuman(&test.CreateHumanRequest{
 			ShoeSize: 60,
 		})
-		testhelpers.Equals(t, &scw.OutOfStockError{
+		testhelpers.Equals(t, &errors.OutOfStockError{
 			Resource: "ShoeSize60",
 			RawBody:  []byte(`{"message":"resource is out of stock","resource":"ShoeSize60","type":"out_of_stock"}`),
 		}, err)

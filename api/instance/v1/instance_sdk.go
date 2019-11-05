@@ -1433,7 +1433,7 @@ func (r *ListServersResponse) UnsafeGetTotalCount() uint32 {
 
 // UnsafeAppend should not be used
 // Internal usage only
-func (r *ListServersResponse) UnsafeAppend(res interface{}) (uint32, scw.SdkError) {
+func (r *ListServersResponse) UnsafeAppend(res interface{}) (uint32, errors.SdkError) {
 	results, ok := res.(*ListServersResponse)
 	if !ok {
 		return 0, errors.New("%T type cannot be appended to type %T", res, r)
@@ -2005,7 +2005,7 @@ func (r *ListImagesResponse) UnsafeGetTotalCount() uint32 {
 
 // UnsafeAppend should not be used
 // Internal usage only
-func (r *ListImagesResponse) UnsafeAppend(res interface{}) (uint32, scw.SdkError) {
+func (r *ListImagesResponse) UnsafeAppend(res interface{}) (uint32, errors.SdkError) {
 	results, ok := res.(*ListImagesResponse)
 	if !ok {
 		return 0, errors.New("%T type cannot be appended to type %T", res, r)
@@ -2288,7 +2288,7 @@ func (r *ListSnapshotsResponse) UnsafeGetTotalCount() uint32 {
 
 // UnsafeAppend should not be used
 // Internal usage only
-func (r *ListSnapshotsResponse) UnsafeAppend(res interface{}) (uint32, scw.SdkError) {
+func (r *ListSnapshotsResponse) UnsafeAppend(res interface{}) (uint32, errors.SdkError) {
 	results, ok := res.(*ListSnapshotsResponse)
 	if !ok {
 		return 0, errors.New("%T type cannot be appended to type %T", res, r)
@@ -2562,7 +2562,7 @@ func (r *ListVolumesResponse) UnsafeGetTotalCount() uint32 {
 
 // UnsafeAppend should not be used
 // Internal usage only
-func (r *ListVolumesResponse) UnsafeAppend(res interface{}) (uint32, scw.SdkError) {
+func (r *ListVolumesResponse) UnsafeAppend(res interface{}) (uint32, errors.SdkError) {
 	results, ok := res.(*ListVolumesResponse)
 	if !ok {
 		return 0, errors.New("%T type cannot be appended to type %T", res, r)
@@ -2784,7 +2784,7 @@ func (r *ListSecurityGroupsResponse) UnsafeGetTotalCount() uint32 {
 
 // UnsafeAppend should not be used
 // Internal usage only
-func (r *ListSecurityGroupsResponse) UnsafeAppend(res interface{}) (uint32, scw.SdkError) {
+func (r *ListSecurityGroupsResponse) UnsafeAppend(res interface{}) (uint32, errors.SdkError) {
 	results, ok := res.(*ListSecurityGroupsResponse)
 	if !ok {
 		return 0, errors.New("%T type cannot be appended to type %T", res, r)
@@ -3075,7 +3075,7 @@ func (r *ListSecurityGroupRulesResponse) UnsafeGetTotalCount() uint32 {
 
 // UnsafeAppend should not be used
 // Internal usage only
-func (r *ListSecurityGroupRulesResponse) UnsafeAppend(res interface{}) (uint32, scw.SdkError) {
+func (r *ListSecurityGroupRulesResponse) UnsafeAppend(res interface{}) (uint32, errors.SdkError) {
 	results, ok := res.(*ListSecurityGroupRulesResponse)
 	if !ok {
 		return 0, errors.New("%T type cannot be appended to type %T", res, r)
@@ -3378,7 +3378,7 @@ func (r *ListPlacementGroupsResponse) UnsafeGetTotalCount() uint32 {
 
 // UnsafeAppend should not be used
 // Internal usage only
-func (r *ListPlacementGroupsResponse) UnsafeAppend(res interface{}) (uint32, scw.SdkError) {
+func (r *ListPlacementGroupsResponse) UnsafeAppend(res interface{}) (uint32, errors.SdkError) {
 	results, ok := res.(*ListPlacementGroupsResponse)
 	if !ok {
 		return 0, errors.New("%T type cannot be appended to type %T", res, r)
@@ -3840,7 +3840,7 @@ func (r *ListIPsResponse) UnsafeGetTotalCount() uint32 {
 
 // UnsafeAppend should not be used
 // Internal usage only
-func (r *ListIPsResponse) UnsafeAppend(res interface{}) (uint32, scw.SdkError) {
+func (r *ListIPsResponse) UnsafeAppend(res interface{}) (uint32, errors.SdkError) {
 	results, ok := res.(*ListIPsResponse)
 	if !ok {
 		return 0, errors.New("%T type cannot be appended to type %T", res, r)
@@ -4143,7 +4143,7 @@ func (r *ListBootscriptsResponse) UnsafeGetTotalCount() uint32 {
 
 // UnsafeAppend should not be used
 // Internal usage only
-func (r *ListBootscriptsResponse) UnsafeAppend(res interface{}) (uint32, scw.SdkError) {
+func (r *ListBootscriptsResponse) UnsafeAppend(res interface{}) (uint32, errors.SdkError) {
 	results, ok := res.(*ListBootscriptsResponse)
 	if !ok {
 		return 0, errors.New("%T type cannot be appended to type %T", res, r)

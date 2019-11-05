@@ -172,7 +172,7 @@ func (s *settings) apply(opts []ClientOption) {
 func (s *settings) validate() error {
 	var err error
 	if s.token == nil {
-		return errors.New("no credential option provided")
+		return &errors.NoClientCredentialProvidedError{}
 	}
 
 	_, err = url.Parse(s.apiURL)

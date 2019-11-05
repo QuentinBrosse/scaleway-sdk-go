@@ -2,10 +2,12 @@ package scalewaysdkgo
 
 import (
 	"fmt"
+	"os"
 	"time"
 
 	"github.com/scaleway/scaleway-sdk-go/api/instance/v1"
 	"github.com/scaleway/scaleway-sdk-go/api/lb/v1"
+	"github.com/scaleway/scaleway-sdk-go/internal/errors"
 	"github.com/scaleway/scaleway-sdk-go/scw"
 )
 
@@ -189,5 +191,31 @@ func Example_createLoadBalancer() {
 
 	// Do something with the newly created LB...
 	fmt.Println(newLb)
+}
 
+func ExampleErrors() {
+	scwError := errors.New("scwError")
+
+	fmt.Println(scw.IsScwError(scwError))
+
+	resErr := &errors.ResponseError{
+		Message:    "",
+		Type:       "",
+		Resource:   "",
+		Fields:     nil,
+		StatusCode: 0,
+		Status:     "",
+		RawBody:    nil,
+	}
+
+	fmt.Println(scw.IsResponseError(resErr))
+
+	_, openErr := os.Open("")
+	wOpenErr := errors.Wrap(openErr, "cannot open the file")
+
+	fmt.Println(scw.IsScwError(wOpenErr))
+
+	// Output: true
+	// true
+	// true
 }

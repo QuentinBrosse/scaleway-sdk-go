@@ -4,6 +4,7 @@ import (
 	"context"
 
 	"github.com/scaleway/scaleway-sdk-go/internal/auth"
+	"github.com/scaleway/scaleway-sdk-go/internal/errors"
 )
 
 // RequestOption is a function that applies options to a ScalewayRequest.
@@ -37,7 +38,7 @@ func (s *ScalewayRequest) apply(opts []RequestOption) {
 	}
 }
 
-func (s *ScalewayRequest) validate() SdkError {
+func (s *ScalewayRequest) validate() errors.SdkError {
 	// nothing so far
 	return nil
 }

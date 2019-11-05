@@ -1,4 +1,4 @@
-package scw
+package errors
 
 import (
 	"bytes"
@@ -14,7 +14,7 @@ func TestHasResponseErrorWithStatus200(t *testing.T) {
 
 	res := &http.Response{StatusCode: 200}
 
-	newErr := hasResponseError(res)
+	newErr := HasResponseError(res)
 	testhelpers.AssertNoError(t, newErr)
 
 }
@@ -23,7 +23,7 @@ func TestHasResponseErrorWithoutBody(t *testing.T) {
 
 	res := &http.Response{StatusCode: 400}
 
-	newErr := hasResponseError(res)
+	newErr := HasResponseError(res)
 	testhelpers.Assert(t, newErr != nil, "Should have error")
 
 }
@@ -53,7 +53,7 @@ func TestHasResponseErrorWithValidError(t *testing.T) {
 	res := &http.Response{Status: errorStatus, StatusCode: errorStatusCode, Body: ioutil.NopCloser(bytes.NewReader(bodyBytes))}
 
 	// Test hasResponseError()
-	newErr := hasResponseError(res)
+	newErr := HasResponseError(res)
 	testhelpers.Assert(t, newErr != nil, "Should have error")
 	testhelpers.Equals(t, testErrorReponse, newErr)
 

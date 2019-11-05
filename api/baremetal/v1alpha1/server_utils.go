@@ -17,7 +17,7 @@ type WaitForServerRequest struct {
 
 // WaitForServer wait for the server to be in a "terminal state" before returning.
 // This function can be used to wait for a server to be installed for example.
-func (s *API) WaitForServer(req *WaitForServerRequest) (*Server, scw.SdkError) {
+func (s *API) WaitForServer(req *WaitForServerRequest) (*Server, errors.SdkError) {
 
 	terminalStatus := map[ServerStatus]struct{}{
 		ServerStatusReady:   {},

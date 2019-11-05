@@ -509,7 +509,7 @@ func (r *ListServersResponse) UnsafeGetTotalCount() uint32 {
 
 // UnsafeAppend should not be used
 // Internal usage only
-func (r *ListServersResponse) UnsafeAppend(res interface{}) (uint32, scw.SdkError) {
+func (r *ListServersResponse) UnsafeAppend(res interface{}) (uint32, errors.SdkError) {
 	results, ok := res.(*ListServersResponse)
 	if !ok {
 		return 0, errors.New("%T type cannot be appended to type %T", res, r)
@@ -962,7 +962,7 @@ func (r *ListServerEventsResponse) UnsafeGetTotalCount() uint32 {
 
 // UnsafeAppend should not be used
 // Internal usage only
-func (r *ListServerEventsResponse) UnsafeAppend(res interface{}) (uint32, scw.SdkError) {
+func (r *ListServerEventsResponse) UnsafeAppend(res interface{}) (uint32, errors.SdkError) {
 	results, ok := res.(*ListServerEventsResponse)
 	if !ok {
 		return 0, errors.New("%T type cannot be appended to type %T", res, r)
